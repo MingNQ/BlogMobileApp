@@ -1,9 +1,9 @@
 # BlogMobileApp
 
-- [About](https://github.com/MingNQ/BlogMobileApp/edit/master/README.md#about)
-- [Installation](https://github.com/MingNQ/BlogMobileApp/edit/master/README.md#installation)
-- [Tech Stack](https://github.com/MingNQ/BlogMobileApp/edit/master/README.md#tech-stack)
-- [Figma Design](https://github.com/MingNQ/BlogMobileApp/edit/master/README.md#tech-stack)
+- [About](https://github.com/MingNQ/BlogMobileApp/README.md#about)
+- [Installation](https://github.com/MingNQ/BlogMobileApp/README.md#installation)
+- [Tech Stack](https://github.com/MingNQ/BlogMobileApp/README.md#tech-stack)
+- [Figma Design](https://github.com/MingNQ/BlogMobileApp/README.md#tech-stack)
 
 ## About
 
