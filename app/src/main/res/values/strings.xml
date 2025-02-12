@@ -1,3 +1,91 @@
 <resources>
     <string name="app_name">BlogMobileApp</string>
+
+    <!-- Home Page -->
+    <string name="H01">Nổi bật trong tháng</string>
+    <string name="H02">Xem TOP 10 bài viết</string>
+    <string name="H03">Chủ đề</string>
+    <string name="H04">Hiển thị thêm</string>
+
+    <!-- Edit Page -->
+    <string name="E01">Phần 1: Viết bài</string>
+    <string name="E01_1">
+        Là một nền tảng tập trung vào việc viết, Spiderum hỗ trợ và khuyến khích người dùng viết những bài viết dạng long-form có đầu tư về nội dung và hình thức để tiếp cận và kết nối được với nhiều độc giả hơn. Chỉ mất khoảng 3-5 phút để lập một tài khoản, từ đó bạn hoàn toàn có thể sử dụng tính năng viết bài với những tiện ích sau đây:
+    </string>
+    <string name="E01_2">Bỏ qua</string>
+    <string name="E01_3">Tiếp tục</string>
+    <string name="E02">Phần 2: Hỗ trợ trình bày bài viết chuyên nghiệp</string>
+    <string name="E02_1">Thanh công cụ sẽ hiện ra sau khi bạn bôi đen phần cần chỉnh sửa, hỗ trợ bạn:
++ Tạo đề mục: Spiderum hỗ trợ người dùng tạo 2 cấp đề mục - đề mục lớn (H2) và đề mục nhỏ (H3)
++ Chỉnh sửa văn bản: in đậm, in nghiêng, gạch chân
++ Tạo trích dẫn: Spiderum hỗ trợ người dùng tạo 2 loại trích dẫn - trích dẫn dài (ví dụ: một đoạn văn) và trích dẫn ngắn (ví dụ: một câu danh ngôn)
++ Đánh dấu các phần quan trọng
++ Căn lề: căn trái, căn giữa, căn phải</string>
+    <string name="E02_2">Bỏ qua</string>
+    <string name="E02_3">Tiếp tục</string>
+    <string name="E03">Phần 3: Hỗ trợ thêm ảnh minh họa cho bài viết:</string>
+    <string name="E03_1">+ Chọn ảnh chất lượng cao thông qua tìm kiếm trên nền tảng Unsplash
++ Tự đăng ảnh lên từ máy
+Ảnh được thêm vào bài viết có thể được hiển thị lệch trái/phải, toàn màn hình để tác giả
+- Hỗ trợ thêm video clip từ các nền tảng như Youtube, Vimeo: 
+Bạn chỉ cần dán link, trình soạn thảo của Spiderum sẽ tự động hiển thị video cho bạn</string>
+    <string name="E03_2">Quay lại</string>
+    <string name="E03_3">Tiếp tục</string>
+    <string name="E04">Phần 4: Hỗ trợ công cụ tối ưu SEO để tối đa hóa số người đọc tiếp cận bài viết từ công cụ tìm kiếm Google</string>
+    <string name="E04_1">+ Spiderum hỗ trợ và khuyến khích tác giả viết phần Mô tả sau khi đã hoàn thành bài viết
++ Spiderum Digital Team sẽ hỗ trợ tác giả đi link chéo với các bài viết liên quan trên Spiderum (Chỉ thực hiện khi có sự cho phép của tác giả)
+Những bài viết có chiều sâu và có đầu tư sẽ được đội ngũ biên tập lựa chọn hiển thị trên trang chủ để tiếp cận được đông đảo độc giả hơn, đồng thời có cơ hội được chuyển hóa thành video trên kênh Spiderum Youtube và audio trên các nền tảng như Spotify hay Apple Podcast. Với những bài viết này, Spiderum sẽ có cơ chế quà tặng tri ân tác giả để ghi nhận và cảm ơn đóng góp của các bạn trong hành trình phát triển và lan tỏa những nội dung thú vị đến với cộng đồng.
+Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung ở chính trang cá nhân của mình, từ đó có thể xây dựng nội dung có kế hoạch và chiến lược hơn. Nếu như những nền tảng như Youtube, Spotify... là nơi bạn xây dựng thương hiệu cá nhân những nội dung dưới dạng vide</string>
+    <string name="E04_2">Quay lại</string>
+    <string name="E04_3">Kết thúc</string>
+    <string name="E05">Tiêu đề bài viết</string>
+    <string name="E06">Nội dung bài viết</string>
+    <string name="E07">Lưu nháp</string>
+    <string name="E08">Bước tiếp theo</string>
+    <string name="E09">Mô tả bài viết</string>
+    <string name="E09_1">(Không bắt buộc)</string>
+    <string name="E10">Thêm danh mục</string>
+    <string name="E11">Hình ảnh nền</string>
+    <string name="E12">Upload</string>
+    <string name="E13">Quay lại</string>
+    <string name="E14">Tạo</string>
+
+    <!-- Search Page -->
+    <string name="S01">Tìm kiếm theo tiêu đề hoặc tác giả</string>
+
+    <!-- Individual Page -->
+    <string name="I01">Chỉnh sửa trang cá nhân</string>
+    <string name="I01_1">Theo dõi</string>
+    <string name="I02">bài viết</string>
+    <string name="I03">followers</string>
+    <string name="I04">following</string>
+    <string name="I05">Bài viết</string>
+    <string name="I06">Bài viết lưu</string>
+    <string name="I07">Tải thêm</string>
+
+    <!-- Notification Page -->
+    <string name="N01">Thông báo</string>
+    <string name="N02">Hiển thị thêm</string>
+
+    <!-- Sign In/Up Page-->
+    <string name="SI01">Nhập tên đăng nhập hoặc email</string>
+    <string name="SI02">Nhập mật khẩu</string>
+    <string name="SI03">Đăng nhập</string>
+    <string name="SI04">Quên mật khẩu?</string>
+    <string name="SI05">Chưa có tài khoản?</string>
+    <string name="SI05_1">Đăng ký ngay</string>
+    <string name="SO_01">Nhập tên đăng nhập</string>
+    <string name="SO_02">Nhập mật khẩu</string>
+    <string name="SO_03">Xác nhận mật khẩu</string>
+    <string name="SO_04">Nhập địa chỉ email</string>
+    <string name="SO_05">Đăng ký</string>
+    <string name="SO_06">Đã có tài khoản?</string>
+    <string name="SO_06_1">Đăng nhập</string>
+    <string name="SO_07">Email xác nhận đã được gửi đến hòm thư.</string>
+    <string name="SO_07_1">Email đã được sử dụng. Vui lòng đăng ký bằng Email khác.</string>
+
+    <!-- Detail Page-->
+    <string name="D01">Follow</string>
+    <string name="D02">Gợi ý thêm</string>
+    <string name="D03">Hãy chia sẻ cảm nghĩ của bạn về bài viết</string>
 </resources>
