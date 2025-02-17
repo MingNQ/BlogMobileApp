@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:inputType="text"
         android:hint="@string/SI01"
         android:background="@drawable/custom_edittext"
         android:padding="12dp"/>
@@ -36,7 +37,7 @@
     <Button
         android:id="@+id/btn_login"
         android:text="@string/SI03"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:backgroundTint="@color/medium_blue"
         android:layout_below="@id/login_password"
         android:layout_marginTop="20dp"
@@ -67,7 +68,7 @@
             android:id="@+id/login_sign_account"
             android:text="@string/SI05_1"
             android:textColor="@color/medium_blue"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

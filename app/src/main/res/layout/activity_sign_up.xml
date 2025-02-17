@@ -15,6 +15,7 @@
 
     <EditText
         android:id="@+id/signup_username"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -48,6 +49,7 @@
         android:id="@+id/signup_email"
         android:layout_below="@+id/signup_confirm_password"
         android:hint="@string/SU_04"
+        android:inputType="textEmailAddress"
         android:background="@drawable/custom_edittext"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -57,7 +59,7 @@
     <Button
         android:id="@+id/btn_signup"
         android:text="@string/SU_05"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:backgroundTint="@color/medium_blue"
         android:layout_below="@id/signup_email"
         android:layout_marginTop="20dp"
@@ -79,7 +81,7 @@
             android:id="@+id/signup_login_account"
             android:text="@string/SU_06_1"
             android:textColor="@color/medium_blue"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
