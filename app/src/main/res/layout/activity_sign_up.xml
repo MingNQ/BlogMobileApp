@@ -14,58 +14,70 @@
         android:src="@drawable/my_app_logo"/>
 
     <EditText
-        android:id="@+id/login_email"
+        android:id="@+id/signup_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:hint="@string/SI01"
+        android:hint="@string/SU_01"
         android:background="@drawable/custom_edittext"
         android:padding="12dp"/>
 
     <EditText
-        android:id="@+id/login_password"
-        android:layout_below="@+id/login_email"
-        android:hint="@string/SI02"
+        android:id="@+id/signup_password"
+        android:layout_below="@+id/signup_username"
+        android:hint="@string/SU_02"
         android:background="@drawable/custom_edittext"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"/>
 
+    <EditText
+        android:id="@+id/signup_confirm_password"
+        android:layout_below="@+id/signup_password"
+        android:hint="@string/SU_03"
+        android:background="@drawable/custom_edittext"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/signup_email"
+        android:layout_below="@+id/signup_confirm_password"
+        android:hint="@string/SU_04"
+        android:background="@drawable/custom_edittext"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"/>
+
     <Button
-        android:id="@+id/btn_login"
-        android:text="@string/SI03"
+        android:id="@+id/btn_signup"
+        android:text="@string/SU_05"
         android:textSize="16dp"
         android:backgroundTint="@color/medium_blue"
-        android:layout_below="@id/login_password"
+        android:layout_below="@id/signup_email"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"/>
 
-    <TextView
-        android:id="@+id/login_forgot_password"
-        android:text="@string/SI04"
-        android:textColor="@color/medium_blue"
-        android:layout_below="@id/btn_login"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_forgot_password">
+        android:layout_below="@id/btn_signup">
         <TextView
-            android:text="@string/SI05"
+            android:text="@string/SU_06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/login_sign_account"
-            android:text="@string/SI05_1"
+            android:id="@+id/signup_login_account"
+            android:text="@string/SU_06_1"
             android:textColor="@color/medium_blue"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
