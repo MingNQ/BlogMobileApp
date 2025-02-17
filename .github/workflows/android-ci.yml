@@ -12,9 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Decode google-services.json
-      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
-      
     - name: Checkout repository
       uses: actions/checkout@v4
       
