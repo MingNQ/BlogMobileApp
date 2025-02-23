@@ -84,6 +84,20 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <string name="SU_07">Email xác nhận đã được gửi đến hòm thư.</string>
     <string name="SU_07_1">Email đã được sử dụng. Vui lòng đăng ký bằng Email khác.</string>
 
+    <!-- Reset Password Page -->
+    <string name="F01">Vui lòng nhập lại địa chỉ Email để được cấp lại mật khẩu</string>
+    <string name="F02">Nhập địa chỉ Email</string>
+    <string name="F02_1">Nhập mã code</string>
+    <string name="F03">Thư xác nhận sẽ được gửi vào hòm thư của bạn</string>
+    <string name="F04">Gửi</string>
+    <string name="F05">Xác nhận</string>
+
+    <string name="R01">Nhập lại mật khẩu mới cho tài khoản:</string>
+    <string name="R02">Nhập mật khẩu mới</string>
+    <string name="R02_1">Xác nhận mật khẩu</string>
+    <string name="R03">Đăng ký lại mật khẩu</string>
+
+
     <!-- Detail Page-->
     <string name="D01">Follow</string>
     <string name="D02">Gợi ý thêm</string>
