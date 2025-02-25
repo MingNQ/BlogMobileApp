@@ -14,7 +14,7 @@
         android:src="@drawable/my_app_logo"/>
 
     <EditText
-        android:id="@+id/signup_username"
+        android:id="@+id/signup_email"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
 
     <EditText
         android:id="@+id/signup_password"
-        android:layout_below="@+id/signup_username"
+        android:layout_below="@+id/signup_email"
         android:hint="@string/SU_02"
         android:background="@drawable/custom_edittext"
         android:layout_marginTop="15dp"
@@ -45,23 +45,12 @@
         android:layout_height="wrap_content"
         android:padding="12dp"/>
 
-    <EditText
-        android:id="@+id/signup_email"
-        android:layout_below="@+id/signup_confirm_password"
-        android:hint="@string/SU_04"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/custom_edittext"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"/>
-
     <Button
         android:id="@+id/btn_signup"
         android:text="@string/SU_05"
         android:textSize="16sp"
         android:backgroundTint="@color/medium_blue"
-        android:layout_below="@id/signup_email"
+        android:layout_below="@id/signup_confirm_password"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -74,10 +74,9 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <string name="SI04">Quên mật khẩu?</string>
     <string name="SI05">Chưa có tài khoản?</string>
     <string name="SI05_1">Đăng ký ngay</string>
-    <string name="SU_01">Nhập tên đăng nhập</string>
+    <string name="SU_01">Nhập địa chỉ email</string>
     <string name="SU_02">Nhập mật khẩu</string>
     <string name="SU_03">Xác nhận mật khẩu</string>
-    <string name="SU_04">Nhập địa chỉ email</string>
     <string name="SU_05">Đăng ký</string>
     <string name="SU_06">Đã có tài khoản?</string>
     <string name="SU_06_1">Đăng nhập</string>
