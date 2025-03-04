@@ -2,57 +2,54 @@ name: Android CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 jobs:
-  build:
-    name: Build and Test Android App
+  lint:
+    name: Run lint
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'zulu'
-        cache: gradle
-        
-    - name: Set up Android SDK
-      uses: android-actions/setup-android@v3
-
-    - name: Install specific Android SDK version
-      run: |
-        sdkmanager "platforms;android-33" "build-tools;33.0.0" "platform-tools"
-
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-
-    - name: Clean project
-      run: ./gradlew clean
-
-    - name: Install dependencies
-      run: ./gradlew dependencies
 
     - name: Decode google-services.json
       run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
     
-    - name: Run unit tests
-      run: ./gradlew test
-
-    - name: Run UI tests (optional)
-      run: ./gradlew connectedAndroidTest
-      continue-on-error: true
-
-    - name: Build APK
-      run: ./gradlew assembleRelease
+    - name: Run lint
+      run: ./gradlew lintDebug
     
-    - name: Upload APK as an artifact
+    - name: Upload HTML test report
       uses: actions/upload-artifact@v4
       with:
-        name: release-apk
-        path: app/build/outputs/apk/release/app-release.apk
+        name: index.html
+        path: app/build/reports/lint-results-debug.html
+     
+  unit-test:
+    needs: [lint]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Decode google-services.json
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
+
+    - name: Run tests
+      run: ./gradlew test
+
+    - name: Upload HTML test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: unit_test_report
+        path: app/build/reports/tests/testDebugUnitTest/
+    
