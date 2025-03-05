@@ -7,18 +7,38 @@ public class Post {
     private String timeReading;
     private int thumbnailResId;
     private int authorAvtResId;
+    private int reactCount;
+    private int commentCount;
 
-    public Post(String title, String authorName, String date, String timeReading, int thumbnailResId, int authorAvtResId) {
+    public Post(String title, String authorName, String date, String timeReading, int thumbnailResId, int authorAvtResId, int reactCount, int commentCount) {
         this.title = title;
         this.authorName = authorName;
         this.date = date;
         this.timeReading = timeReading;
         this.thumbnailResId = thumbnailResId;
         this.authorAvtResId = authorAvtResId;
+        this.reactCount = reactCount;
+        this.commentCount = commentCount;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public int getReactCount() {
+        return reactCount;
+    }
+
+    public void setReactCount(int reactCount) {
+        this.reactCount = reactCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 
     public void setTitle(String title) {
