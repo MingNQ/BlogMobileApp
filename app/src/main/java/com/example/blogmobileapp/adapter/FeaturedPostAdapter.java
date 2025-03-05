@@ -14,28 +14,27 @@ import com.example.blogmobileapp.model.Post;
 
 import java.util.List;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+public class FeaturedPostAdapter extends RecyclerView.Adapter<FeaturedPostAdapter.FeaturedPostViewHolder> {
     private List<Post> postList;
 
-    public PostAdapter(List<Post> postList) {
+    public FeaturedPostAdapter(List<Post> postList) {
         this.postList = postList;
     }
 
     @NonNull
     @Override
-    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
-        return new PostViewHolder(view);
+    public FeaturedPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_featured_post, parent, false);
+        return new FeaturedPostViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FeaturedPostViewHolder holder, int position) {
         Post post = postList.get(position);
         holder.title.setText(post.getTitle());
         holder.authorName.setText(post.getAuthorName());
+        holder.timeReading.setText(post.getTimeReading());
         holder.date.setText(post.getDate());
-        holder.reactCount.setText(String.valueOf(post.getReactCount()));
-        holder.commentCount.setText(String.valueOf(post.getCommentCount()));
         holder.thumbnail.setImageResource(post.getThumbnailResId());
         holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
     }
@@ -45,21 +44,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         return postList.size();
     }
 
-    public static class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView title, authorName, date, reactCount, commentCount;
+    public static class FeaturedPostViewHolder extends RecyclerView.ViewHolder {
+        TextView title, authorName, date, timeReading;
         ImageView thumbnail, authorAvatar;
 
-        public PostViewHolder(@NonNull View itemView) {
+        public FeaturedPostViewHolder(@NonNull View itemView) {
             super(itemView);
             initWidgets(itemView);
         }
 
-        private void initWidgets(View itemView) {
+        private void initWidgets(@NonNull View itemView) {
             title = itemView.findViewById(R.id.postTitle);
             authorName = itemView.findViewById(R.id.postAuthorName);
             date = itemView.findViewById(R.id.postCreateDate);
-            reactCount = itemView.findViewById(R.id.postReactCount);
-            commentCount = itemView.findViewById(R.id.postCommentCount);
+            timeReading = itemView.findViewById(R.id.postTimeReading);
             thumbnail = itemView.findViewById(R.id.postThumbnail);
             authorAvatar = itemView.findViewById(R.id.postAuthorAvatar);
         }
