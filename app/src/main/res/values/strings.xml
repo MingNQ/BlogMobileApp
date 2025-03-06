@@ -66,6 +66,9 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <!-- Notification Page -->
     <string name="N01">Thông báo</string>
     <string name="N02">Hiển thị thêm</string>
+    <string name="N03">Đã bày tỏ cảm xúc về bài viết của bạn</string>
+    <string name="N04">Đã bình luận về bài viết của bạn</string>
+    <string name="N05">Đã trả lời bình luận của bạn</string>
 
     <!-- Sign In/Up Page-->
     <string name="SI01">Nhập tên đăng nhập hoặc email</string>
