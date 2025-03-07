@@ -12,17 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.blogmobileapp.service.FirebaseManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText signupPassword, signupConfirmPassword, signupEmail;
     private Button signupBtn;
     private TextView loginAccount;
-    FirebaseAuth mAuth;
     ProgressDialog progressDialog;
 
     @Override
@@ -68,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setTitle("Please wait..."); // TO-DO: Change Text
         progressDialog.show();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        FirebaseManager.getInstance().getFirebaseAuth().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,7 +96,6 @@ public class SignUpActivity extends AppCompatActivity {
         signupConfirmPassword = findViewById(R.id.signup_confirm_password);
         signupBtn = findViewById(R.id.btn_signup);
         loginAccount = findViewById(R.id.signup_login_account);
-        mAuth = FirebaseAuth.getInstance(); // Get instance of FirebaseAuth
         progressDialog = new ProgressDialog(this);
     }
 }

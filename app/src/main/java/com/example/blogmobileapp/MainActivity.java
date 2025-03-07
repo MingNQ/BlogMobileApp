@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.blogmobileapp.service.FirebaseManager;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
@@ -36,6 +39,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ForgetPasswordActivity.class));
             }
         });
+
+        // Sign In
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = loginEmail.getText().toString();
+                String password = loginPassword.getText().toString();
+
+                signIn(email, password);
+            }
+        });
+    }
+
+    // Handle Sign In
+    private void signIn(String email, String password) {
+        // Debug error
+        FirebaseManager.getInstance().getFirebaseAuth().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                   if (task.isSuccessful()) {
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                   } else {
+                       Toast.makeText(MainActivity.this, "Sign In Fail!", Toast.LENGTH_SHORT).show();
+                   }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // TO-DO: Change Text
+                });
     }
 
     // Initialize widgets
