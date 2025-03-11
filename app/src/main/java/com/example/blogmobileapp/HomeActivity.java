@@ -63,7 +63,10 @@ public class HomeActivity extends AppCompatActivity {
         otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
         otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
 
-        recyclerPost.setAdapter(new PostAdapter(otherPostList));
+        PostAdapter postAdapter = new PostAdapter(otherPostList);
+        postAdapter.setContext(HomeActivity.this);
+
+        recyclerPost.setAdapter(postAdapter);
     }
 
     // Featured Post

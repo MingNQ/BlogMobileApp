@@ -13,4 +13,5 @@
     <color name="quite_light_gray">#B3B3B3</color>
     <color name="gray_blue">#4A5568</color>
     <color name="background_color">#F5F7FA</color>
+    <color name="title_color">#2D3748</color>
 </resources>

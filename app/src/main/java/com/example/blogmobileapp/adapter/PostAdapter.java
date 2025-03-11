@@ -1,5 +1,8 @@
 package com.example.blogmobileapp.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.blogmobileapp.BlogDetailActivity;
 import com.example.blogmobileapp.R;
 import com.example.blogmobileapp.model.Post;
 
@@ -16,9 +20,18 @@ import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     private List<Post> postList;
+    private Context context;
 
     public PostAdapter(List<Post> postList) {
         this.postList = postList;
+    }
+
+    public Context getContext() {
+        return this.context;
+    }
+
+    public void setContext(Context _context) {
+        this.context = _context;
     }
 
     @NonNull
@@ -38,6 +51,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.commentCount.setText(String.valueOf(post.getCommentCount()));
         holder.thumbnail.setImageResource(post.getThumbnailResId());
         holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, BlogDetailActivity.class);
+            intent.putExtra("post_title", post.getTitle());
+            intent.putExtra("post_create_date", post.getDate());
+            intent.putExtra("author_name", post.getAuthorName());
+            intent.putExtra("author_avatar", post.getAuthorAvtResId());
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
