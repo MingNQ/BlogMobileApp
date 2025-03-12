@@ -52,6 +52,8 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
 
     <!-- Search Page -->
     <string name="S01">Tìm kiếm theo tiêu đề hoặc tác giả</string>
+    <string name="S02">Gần đây</string>
+    <string name="S03">Xóa hết</string>
 
     <!-- Individual Page -->
     <string name="I01">Chỉnh sửa trang cá nhân</string>

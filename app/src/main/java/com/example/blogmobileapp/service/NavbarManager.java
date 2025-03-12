@@ -7,6 +7,7 @@ import android.widget.ScrollView;
 
 import com.example.blogmobileapp.HomeActivity;
 import com.example.blogmobileapp.R;
+import com.example.blogmobileapp.SearchActivity;
 import com.example.blogmobileapp.UploadActivity;
 
 public class NavbarManager {
@@ -46,5 +47,11 @@ public class NavbarManager {
         }
 
         // TO-DO: Search, Notification
+        if (search != null) {
+            search.setOnClickListener(view -> {
+                Intent intent = new Intent(activity, SearchActivity.class);
+                activity.startActivity(intent);
+            });
+        }
     }
 }

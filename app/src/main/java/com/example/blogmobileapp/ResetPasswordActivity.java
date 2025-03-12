@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ResetPassword extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
     TextView textViewUsername;
     EditText editTextPassword, editTextConfirmPassword;
     Button btnResetPassword;
