@@ -6,18 +6,20 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.example.blogmobileapp.HomeActivity;
+import com.example.blogmobileapp.PersonalActivity;
 import com.example.blogmobileapp.R;
 import com.example.blogmobileapp.SearchActivity;
 import com.example.blogmobileapp.UploadActivity;
 
 public class NavbarManager {
     public static void setupNavbar(Activity activity) {
-        ImageView home, search, upload, notification;
+        ImageView home, search, upload, notification, userAvatar;
 
         home = activity.findViewById(R.id.homeIcon);
         upload = activity.findViewById(R.id.uploadIcon);
         search = activity.findViewById(R.id.searchIcon);
         notification = activity.findViewById(R.id.notificationIcon);
+        userAvatar = activity.findViewById(R.id.userAvatar);
 
         if (home != null) {
             home.setOnClickListener(view -> {
@@ -46,12 +48,27 @@ public class NavbarManager {
             });
         }
 
-        // TO-DO: Search, Notification
         if (search != null) {
             search.setOnClickListener(view -> {
                 Intent intent = new Intent(activity, SearchActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 activity.startActivity(intent);
             });
         }
+
+        if (userAvatar != null) {
+            userAvatar.setOnClickListener(view -> {
+                if (activity instanceof PersonalActivity) {
+                    ScrollView scrollView = activity.findViewById(R.id.scrollViewPersonal);
+                    scrollView.smoothScrollTo(0, 0);
+
+                    return;
+                }
+                Intent intent = new Intent(activity, PersonalActivity.class);
+                activity.startActivity(intent);
+            });
+        }
+
+        // TO-DO: Notification
     }
 }

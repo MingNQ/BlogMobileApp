@@ -50,7 +50,9 @@ public class HomeActivity extends AppCompatActivity {
     // Initialize Widgets
     private void initWidgets() {
         recyclerFeaturePost = findViewById(R.id.recyclerFeaturedPost);
+        recyclerFeaturePost.setFocusable(false);
         recyclerPost = findViewById(R.id.recyclerPost);
+        recyclerPost.setFocusable(false);
     }
 
     // Other Posts
