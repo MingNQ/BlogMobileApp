@@ -1,14 +1,41 @@
 package com.example.blogmobileapp.model;
 
 public class User {
+    private String userId;
     private String username;
     private String fullname;
+    private String email;
+    private String photoUrl;
     private int avatarResId;
 
     public User(String username, String fullname, int avatarResId) {
         this.username = username;
         this.fullname = fullname;
         this.avatarResId = avatarResId;
+    }
+
+    public User(String userId, String username, String fullname, String email, String photoUrl) {
+        this.userId = userId;
+        this.username = username;
+        this.fullname = fullname;
+        this.email = email;
+        this.photoUrl = photoUrl;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getUsername() {

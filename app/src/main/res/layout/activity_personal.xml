@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".PersonalActivity">
 
-    <include layout="@layout/navbar"/>
+    <include
+        android:id="@+id/navbar"
+        layout="@layout/navbar"/>
 
     <ScrollView
         android:id="@+id/scrollViewPersonal"
@@ -59,9 +61,11 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/userAvatar"
+                        android:id="@+id/mainUserAvatar"
                         android:layout_width="120dp"
-                        android:layout_height="120dp"/>
+                        android:layout_height="120dp"
+                        android:scaleType="fitCenter"
+                        android:padding="8dp"/>
 
                 </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.blogmobileapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,7 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.blogmobileapp.model.User;
 import com.example.blogmobileapp.service.FirebaseManager;
+import com.example.blogmobileapp.service.NavbarManager;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
@@ -58,14 +66,53 @@ public class MainActivity extends AppCompatActivity {
         FirebaseManager.getInstance().getFirebaseAuth().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                    if (task.isSuccessful()) {
-                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                       FirebaseUser user = FirebaseManager.getInstance().getFirebaseUser();
+                       if (user != null && user.isEmailVerified()) {
+                           userReload(user); // Reload user information
+                       } else {
+                           Toast.makeText(this,
+                                   "Vui lòng xác nhận email trước khi đăng nhập!",
+                                   Toast.LENGTH_LONG).show();
+                           FirebaseManager.getInstance().getFirebaseAuth().signOut();
+                       }
                    } else {
-                       Toast.makeText(MainActivity.this, "Sign In Fail!", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(MainActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                    }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // TO-DO: Change Text
                 });
+    }
+
+    // Reload user from database
+    private void userReload(FirebaseUser user) {
+        DatabaseReference userRef = FirebaseManager.getInstance().getFirebaseDatabase().getReference("Users")
+                .child(user.getUid());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String userName = snapshot.child("username").getValue(String.class);
+                    String fullName = snapshot.child("fullname").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String photoUrl = snapshot.child("photoUrl").getValue(String.class);
+
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent.putExtra("USER_NAME", userName);
+                    intent.putExtra("FULL_NAME", fullName);
+                    intent.putExtra("USER_EMAIL", email);
+                    intent.putExtra("USER_PHOTO", photoUrl);
+                    NavbarManager.reloadUser(new User(user.getUid(), userName, fullName, email, photoUrl));
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     // Initialize widgets

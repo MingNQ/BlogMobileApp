@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.blogmobileapp.adapter.PostAdapter;
 import com.example.blogmobileapp.model.Post;
+import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.service.ImageManager;
 import com.example.blogmobileapp.service.NavbarManager;
 
 import java.util.ArrayList;
@@ -34,10 +36,22 @@ public class PersonalActivity extends AppCompatActivity {
         initWidgets();
 
         // Handle Navbar
-        NavbarManager.setupNavbar(this);
+        NavbarManager.setupNavbar(this, findViewById(R.id.navbar));
+
+        // Reload User
+        reloadUser();
 
         // Load posts
         loadPosts();
+    }
+
+    // Reload User
+    private void reloadUser() {
+        User user = NavbarManager._User;
+
+        userName.setText(user.getUsername());
+        fullName.setText(user.getFullname());
+        ImageManager.loadImage(this, userAvatar, user.getPhotoUrl());
     }
 
     // Load posts
@@ -65,7 +79,7 @@ public class PersonalActivity extends AppCompatActivity {
         numPosts = findViewById(R.id.numPosts);
         numFollowers = findViewById(R.id.numFollowers);
         numFollowings = findViewById(R.id.numFollowings);
-        userAvatar = findViewById(R.id.userAvatar);
+        userAvatar = findViewById(R.id.mainUserAvatar);
         btnEditPersonal = findViewById(R.id.buttonEditPersonal);
         btnPosts = findViewById(R.id.btnPosts);
         btnSavedPosts = findViewById(R.id.btnSavedPosts);

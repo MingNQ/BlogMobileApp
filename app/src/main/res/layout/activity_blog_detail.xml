@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".BlogDetailActivity">
 
-    <include layout="@layout/navbar"/>
+    <include
+        android:id="@+id/navbar"
+        layout="@layout/navbar"/>
 
     <ScrollView
         android:layout_width="match_parent"

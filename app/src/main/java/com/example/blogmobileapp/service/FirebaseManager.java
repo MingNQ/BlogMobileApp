@@ -1,13 +1,13 @@
 package com.example.blogmobileapp.service;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseManager {
     private static FirebaseManager instance;
-    private FirebaseAuth firebaseAuth;
 
     private FirebaseManager() {
-        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public static FirebaseManager getInstance() {
@@ -19,6 +19,14 @@ public class FirebaseManager {
     }
 
     public FirebaseAuth getFirebaseAuth() {
-        return firebaseAuth;
+        return FirebaseAuth.getInstance();
+    }
+
+    public FirebaseUser getFirebaseUser() {
+        return FirebaseAuth.getInstance().getCurrentUser();
+    }
+
+    public FirebaseDatabase getFirebaseDatabase() {
+        return FirebaseDatabase.getInstance();
     }
 }

@@ -39,7 +39,7 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
 
         // Navbar handle
-        NavbarManager.setupNavbar(this);
+        NavbarManager.setupNavbar(this, findViewById(R.id.navbar));
 
         // Initialize widgets
         initWidgets();

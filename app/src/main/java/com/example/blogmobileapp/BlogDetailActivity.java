@@ -35,7 +35,7 @@ public class BlogDetailActivity extends AppCompatActivity {
         initWidgets();
 
         // Navbar handle
-        NavbarManager.setupNavbar(this);
+        NavbarManager.setupNavbar(this, findViewById(R.id.navbar));
 
         // Load Data
         loadDetailPost();

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.blogmobileapp.adapter.FeaturedPostAdapter;
 import com.example.blogmobileapp.adapter.PostAdapter;
 import com.example.blogmobileapp.model.Post;
+import com.example.blogmobileapp.model.User;
 import com.example.blogmobileapp.service.NavbarManager;
 
 import java.util.ArrayList;
@@ -35,7 +36,8 @@ public class HomeActivity extends AppCompatActivity {
         initWidgets();
 
         // Navbar handle
-        NavbarManager.setupNavbar(this);
+        View navbar = findViewById(R.id.navbar);
+        NavbarManager.setupNavbar(this, navbar);
 
         // Featured Post
         generateFeaturedPost();
