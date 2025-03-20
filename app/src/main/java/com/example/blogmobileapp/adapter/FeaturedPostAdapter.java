@@ -1,5 +1,6 @@
 package com.example.blogmobileapp.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blogmobileapp.R;
-import com.example.blogmobileapp.model.Post;
+import com.example.blogmobileapp.model.PostModel;
 
 import java.util.List;
 
 public class FeaturedPostAdapter extends RecyclerView.Adapter<FeaturedPostAdapter.FeaturedPostViewHolder> {
-    private List<Post> postList;
+    private List<PostModel> postList;
 
-    public FeaturedPostAdapter(List<Post> postList) {
+    public FeaturedPostAdapter(List<PostModel> postList) {
         this.postList = postList;
     }
 
@@ -30,13 +31,13 @@ public class FeaturedPostAdapter extends RecyclerView.Adapter<FeaturedPostAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FeaturedPostViewHolder holder, int position) {
-        Post post = postList.get(position);
+        PostModel post = postList.get(position);
         holder.title.setText(post.getTitle());
-        holder.authorName.setText(post.getAuthorName());
+        holder.authorName.setText(post.getAuthor());
         holder.timeReading.setText(post.getTimeReading());
-        holder.date.setText(post.getDate());
-        holder.thumbnail.setImageResource(post.getThumbnailResId());
-        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
+        holder.date.setText(String.valueOf(post.getTimestamp()));
+//        holder.thumbnail.setImageResource(new Uri(post.getThumbnailResId()));
+//        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
     }
 
     @Override

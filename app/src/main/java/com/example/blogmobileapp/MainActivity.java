@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.UserModel;
 import com.example.blogmobileapp.service.FirebaseManager;
 import com.example.blogmobileapp.service.NavbarManager;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = FirebaseManager.getInstance().getFirebaseAuth().getCurrentUser();
+
+        if (currentUser != null) {
+            userReload(currentUser);
+            finish();
+        }
+    }
+
     // Handle Sign In
     private void signIn(String email, String password) {
         // Debug error
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("FULL_NAME", fullName);
                     intent.putExtra("USER_EMAIL", email);
                     intent.putExtra("USER_PHOTO", photoUrl);
-                    NavbarManager.reloadUser(new User(user.getUid(), userName, fullName, email, photoUrl));
+                    NavbarManager.reloadUser(new UserModel(user.getUid(), userName, fullName, email, photoUrl));
                     startActivity(intent);
                     finish();
                 }

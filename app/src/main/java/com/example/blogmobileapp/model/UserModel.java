@@ -1,6 +1,6 @@
 package com.example.blogmobileapp.model;
 
-public class User {
+public class UserModel {
     private String userId;
     private String username;
     private String fullname;
@@ -8,13 +8,13 @@ public class User {
     private String photoUrl;
     private int avatarResId;
 
-    public User(String username, String fullname, int avatarResId) {
+    public UserModel(String username, String fullname, int avatarResId) {
         this.username = username;
         this.fullname = fullname;
         this.avatarResId = avatarResId;
     }
 
-    public User(String userId, String username, String fullname, String email, String photoUrl) {
+    public UserModel(String userId, String username, String fullname, String email, String photoUrl) {
         this.userId = userId;
         this.username = username;
         this.fullname = fullname;

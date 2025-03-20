@@ -112,4 +112,8 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <string name="C03">Tài chính</string>
     <string name="C04">Thể thao</string>
     <string name="C00">Khác</string>
+
+    <!-- Menu -->
+    <string name="M01">Trang cá nhân</string>
+    <string name="M02">Đăng xuất</string>
 </resources>

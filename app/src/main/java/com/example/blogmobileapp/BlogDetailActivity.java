@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.blogmobileapp.model.CommentModel;
-import com.example.blogmobileapp.model.Post;
+import com.example.blogmobileapp.model.PostModel;
 import com.example.blogmobileapp.service.NavbarManager;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class BlogDetailActivity extends AppCompatActivity {
     private Button btnFollow;
     private ImageView imgSend, authorAvatar;
     private RecyclerView recyclerViewMorePost, recyclerViewComment;
-    private List<Post> morePostList;
+    private List<PostModel> morePostList;
     private List<CommentModel> commentModelList;
 
     @Override

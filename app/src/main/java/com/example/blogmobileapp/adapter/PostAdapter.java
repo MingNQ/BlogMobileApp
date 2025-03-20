@@ -2,7 +2,6 @@ package com.example.blogmobileapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blogmobileapp.BlogDetailActivity;
 import com.example.blogmobileapp.R;
-import com.example.blogmobileapp.model.Post;
+import com.example.blogmobileapp.model.PostModel;
 
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
-    private List<Post> postList;
+    private List<PostModel> postList;
     private Context context;
 
-    public PostAdapter(List<Post> postList) {
+    public PostAdapter(List<PostModel> postList) {
         this.postList = postList;
     }
 
@@ -34,6 +33,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         this.context = _context;
     }
 
+    public void setPosts(List<PostModel> posts) {
+        this.postList = posts;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,20 +47,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post post = postList.get(position);
+        PostModel post = postList.get(position);
         holder.title.setText(post.getTitle());
-        holder.authorName.setText(post.getAuthorName());
-        holder.date.setText(post.getDate());
-        holder.reactCount.setText(String.valueOf(post.getReactCount()));
+        holder.authorName.setText(post.getAuthor());
+        holder.date.setText(String.valueOf(post.getTimestamp()));
+        holder.reactCount.setText(String.valueOf(post.getLikes()));
         holder.commentCount.setText(String.valueOf(post.getCommentCount()));
-        holder.thumbnail.setImageResource(post.getThumbnailResId());
-        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
+//        holder.thumbnail.setImageResource(post.getThumbnailResId());
+//        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, BlogDetailActivity.class);
             intent.putExtra("post_title", post.getTitle());
-            intent.putExtra("post_create_date", post.getDate());
-            intent.putExtra("author_name", post.getAuthorName());
+            intent.putExtra("post_create_date", post.getTimestamp());
+            intent.putExtra("author_name", post.getAuthor());
             intent.putExtra("author_avatar", post.getAuthorAvtResId());
 
             context.startActivity(intent);

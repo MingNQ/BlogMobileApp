@@ -7,16 +7,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.blogmobileapp.adapter.FeaturedPostAdapter;
 import com.example.blogmobileapp.adapter.PostAdapter;
-import com.example.blogmobileapp.model.Post;
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.PostModel;
 import com.example.blogmobileapp.service.NavbarManager;
 
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerFeaturePost, recyclerPost;
     private FeaturedPostAdapter featuredPostAdapter;
-    private List<Post> featuredPostList, otherPostList;
+    private List<PostModel> featuredPostList, otherPostList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +59,10 @@ public class HomeActivity extends AppCompatActivity {
         recyclerPost.setLayoutManager(new LinearLayoutManager(this));
 
         otherPostList = new ArrayList<>();
-        otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        otherPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
+        otherPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
+        otherPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
+        otherPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
+        otherPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
 
         PostAdapter postAdapter = new PostAdapter(otherPostList);
         postAdapter.setContext(HomeActivity.this);
@@ -78,10 +75,10 @@ public class HomeActivity extends AppCompatActivity {
         recyclerFeaturePost.setLayoutManager(new LinearLayoutManager(this));
 
         featuredPostList = new ArrayList<>();
-        featuredPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
-        featuredPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
-        featuredPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
-        featuredPostList.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
+        featuredPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
+        featuredPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
+        featuredPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
+        featuredPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
 
         featuredPostAdapter = new FeaturedPostAdapter(featuredPostList);
         recyclerFeaturePost.setAdapter(featuredPostAdapter);

@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.blogmobileapp.adapter.SearchUserAdapter;
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class SearchActivity extends AppCompatActivity {
     ImageView imgBack, imgSearch;
     EditText keyWord;
     RecyclerView recyclerSearchUser;
-    List<User> users = new ArrayList<>();
+    List<UserModel> users = new ArrayList<>();
     SearchUserAdapter adapter;
 
     @SuppressLint("NotifyDataSetChanged")
@@ -52,10 +52,10 @@ public class SearchActivity extends AppCompatActivity {
     // Initialize recycler
     private void initRecycler() {
         // TO-DO: Get Data
-        users.add(new User("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new User("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new User("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new User("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
+        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
+        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
+        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
+        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
 
         adapter = new SearchUserAdapter(users);
         recyclerSearchUser.setLayoutManager(new LinearLayoutManager(this));

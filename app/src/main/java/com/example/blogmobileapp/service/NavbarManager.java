@@ -2,34 +2,25 @@ package com.example.blogmobileapp.service;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaders;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.example.blogmobileapp.HomeActivity;
+import com.example.blogmobileapp.MainActivity;
 import com.example.blogmobileapp.PersonalActivity;
 import com.example.blogmobileapp.R;
 import com.example.blogmobileapp.SearchActivity;
 import com.example.blogmobileapp.UploadActivity;
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.UserModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavbarManager {
     private static ImageView home, search, upload, notification, userAvatar;
     private static View navbarView;
-    public static User _User;
+    public static UserModel _User;
 
     public static void setupNavbar(Activity activity, View navbar) {
         home = navbar.findViewById(R.id.homeIcon);
@@ -78,19 +69,40 @@ public class NavbarManager {
 
         if (userAvatar != null) {
             userAvatar.setOnClickListener(view -> {
-                if (activity instanceof PersonalActivity) {
-                    ScrollView scrollView = activity.findViewById(R.id.scrollViewPersonal);
-                    scrollView.smoothScrollTo(0, 0);
+                PopupMenu popupMenu = new PopupMenu(activity, view);
+                popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
 
-                    return;
-                }
-                Intent intent = new Intent(activity, PersonalActivity.class);
-                intent.putExtra("USER_NAME", _User.getUsername());
-                intent.putExtra("FULL_NAME", _User.getFullname());
-                intent.putExtra("USER_EMAIL", _User.getEmail());
-                intent.putExtra("USER_PHOTO", _User.getPhotoUrl());
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    if (item.getItemId() == R.id.menu_view_profile) {
+                        if (activity instanceof PersonalActivity) {
+                            ScrollView scrollView = activity.findViewById(R.id.scrollViewPersonal);
+                            scrollView.smoothScrollTo(0, 0);
 
-                activity.startActivity(intent);
+                            return false;
+                        }
+
+                        Intent intent = new Intent(activity, PersonalActivity.class);
+                        intent.putExtra("USER_NAME", _User.getUsername());
+                        intent.putExtra("FULL_NAME", _User.getFullname());
+                        intent.putExtra("USER_EMAIL", _User.getEmail());
+                        intent.putExtra("USER_PHOTO", _User.getPhotoUrl());
+
+                        activity.startActivity(intent);
+                        return true;
+                    } else if (item.getItemId() == R.id.menu_log_out) {
+                        FirebaseAuth firebaseAuth = FirebaseManager.getInstance().getFirebaseAuth();
+                        firebaseAuth.signOut();
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
+
+                        return true;
+                    }
+
+                    return false;
+                });
+
+                popupMenu.show();
             });
         }
 
@@ -103,7 +115,7 @@ public class NavbarManager {
         }
     }
 
-    public static void reloadUser(User user) {
+    public static void reloadUser(UserModel user) {
         _User = user;
     }
 }

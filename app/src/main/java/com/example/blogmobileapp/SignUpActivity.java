@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.UserModel;
 import com.example.blogmobileapp.service.FirebaseManager;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -88,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                                        Toast.makeText(this, "Email xác nhận đã được gửi. Vui lòng kiểm tra hộp thư!", Toast.LENGTH_LONG).show();
 
                                        String userId = user.getUid();
-                                       User newUser = new User(userId, name, name, email, photoUrl);
+                                       UserModel newUser = new UserModel(userId, name, name, email, photoUrl);
 
                                        DatabaseReference userRef = FirebaseManager.getInstance().
                                                getFirebaseDatabase().getReference("Users").

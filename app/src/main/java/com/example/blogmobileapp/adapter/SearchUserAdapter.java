@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blogmobileapp.R;
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.UserModel;
 
 import java.util.List;
 
 public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.SearchUserViewHolder> {
-    List<User> userList;
+    List<UserModel> userList;
 
-    public SearchUserAdapter(List<User> userList) {
+    public SearchUserAdapter(List<UserModel> userList) {
         this.userList = userList;
     }
 
@@ -30,7 +30,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Se
 
     @Override
     public void onBindViewHolder(@NonNull SearchUserViewHolder holder, int position) {
-        User user = userList.get(position);
+        UserModel user = userList.get(position);
         holder.username.setText(user.getUsername());
         holder.fullname.setText(user.getFullname());
         holder.avatar.setImageResource(user.getAvatarResId());

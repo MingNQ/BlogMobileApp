@@ -1,6 +1,7 @@
 package com.example.blogmobileapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,10 +12,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.blogmobileapp.adapter.PostAdapter;
-import com.example.blogmobileapp.model.Post;
-import com.example.blogmobileapp.model.User;
+import com.example.blogmobileapp.model.PostModel;
+import com.example.blogmobileapp.model.UserModel;
+import com.example.blogmobileapp.service.FirebaseManager;
 import com.example.blogmobileapp.service.ImageManager;
 import com.example.blogmobileapp.service.NavbarManager;
+import com.example.blogmobileapp.viewmodel.PostViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +28,9 @@ public class PersonalActivity extends AppCompatActivity {
     ImageView userAvatar;
     Button btnEditPersonal, btnPosts, btnSavedPosts;
     RecyclerView recyclerPersonalPosts;
-    List<Post> personalPosts;
+    List<PostModel> personalPosts;
     ScrollView scrollViewPersonalPage;
+    PostViewModel postViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,7 @@ public class PersonalActivity extends AppCompatActivity {
 
     // Reload User
     private void reloadUser() {
-        User user = NavbarManager._User;
+        UserModel user = NavbarManager._User;
 
         userName.setText(user.getUsername());
         fullName.setText(user.getFullname());
@@ -57,19 +62,30 @@ public class PersonalActivity extends AppCompatActivity {
     // Load posts
     private void loadPosts() {
         personalPosts.clear();
-
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-        personalPosts.add(new Post("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 10, 10));
-
         PostAdapter adapter = new PostAdapter(personalPosts);
-        adapter.setContext(PersonalActivity.this);
+        FirebaseAuth auth = FirebaseManager.getInstance().getFirebaseAuth();
+        String userId = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "Anonymous";
 
+        postViewModel = new ViewModelProvider(this).get(PostViewModel.class);
+        postViewModel.loadPostsByUserId(userId);
+        postViewModel.getPostsLiveData().observe(this, posts -> {
+            if (posts != null) {
+                personalPosts = posts;
+                adapter.setPosts(personalPosts);
+                adapter.setContext(PersonalActivity.this);
+            }
+        });
+
+        updateInformation();
         recyclerPersonalPosts.setLayoutManager(new LinearLayoutManager(this));
         recyclerPersonalPosts.setAdapter(adapter);
+    }
+
+    // Update information
+    private void updateInformation() {
+        numPosts.setText(String.valueOf(personalPosts.size()));
+        numFollowers.setText(String.valueOf(0));
+        numFollowings.setText(String.valueOf(0));
     }
 
     // Initialize widgets
