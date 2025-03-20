@@ -1,5 +1,7 @@
 package com.example.blogmobileapp.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,9 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blogmobileapp.BlogDetailActivity;
 import com.example.blogmobileapp.R;
+import com.example.blogmobileapp.common.AppConstant;
 import com.example.blogmobileapp.model.PostModel;
+import com.example.blogmobileapp.service.ImageManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     private List<PostModel> postList;
@@ -33,6 +40,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         this.context = _context;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setPosts(List<PostModel> posts) {
         this.postList = posts;
         notifyDataSetChanged();
@@ -50,16 +58,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         PostModel post = postList.get(position);
         holder.title.setText(post.getTitle());
         holder.authorName.setText(post.getAuthor());
-        holder.date.setText(String.valueOf(post.getTimestamp()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = sdf.format(new Date(post.getTimestamp()));
+        holder.date.setText(date);
         holder.reactCount.setText(String.valueOf(post.getLikes()));
         holder.commentCount.setText(String.valueOf(post.getCommentCount()));
-//        holder.thumbnail.setImageResource(post.getThumbnailResId());
-//        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
+
+        if (post.getAuthorAvtResId() != null) {
+            ImageManager.loadImage((Activity) context, holder.authorAvatar, post.getAuthorAvtResId());
+        } else {
+            ImageManager.loadImage((Activity) context, holder.authorAvatar, AppConstant.DEFAULT_PHOTO_URL);
+        }
+
+        if (post.getThumbnailResId() != null) {
+            ImageManager.loadImage((Activity) context, holder.thumbnail, post.getThumbnailResId());
+        } else {
+            holder.thumbnail.setImageResource(R.drawable.red_heart);
+        }
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, BlogDetailActivity.class);
             intent.putExtra("post_title", post.getTitle());
             intent.putExtra("post_create_date", post.getTimestamp());
+            intent.putExtra("post_content", post.getContent());
             intent.putExtra("author_name", post.getAuthor());
             intent.putExtra("author_avatar", post.getAuthorAvtResId());
 

@@ -81,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
         featuredPostList.add(new PostModel("Điều duy nhất có ý nghĩa trong cuộc đời", "LongNguyen", "23/1/2025", "4 phut doc", R.drawable.red_heart, R.drawable.red_heart, 0, 0));
 
         featuredPostAdapter = new FeaturedPostAdapter(featuredPostList);
+        featuredPostAdapter.setContext(this);
         recyclerFeaturePost.setAdapter(featuredPostAdapter);
     }
 

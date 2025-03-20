@@ -1,8 +1,5 @@
 package com.example.blogmobileapp.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 public class PostModel {
     private String title;
     private String author;
@@ -23,7 +20,6 @@ public class PostModel {
         this.category = category;
         this.content = content;
         this.likes = likes;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         this.timestamp = timestamp;
         this.title = title;
     }

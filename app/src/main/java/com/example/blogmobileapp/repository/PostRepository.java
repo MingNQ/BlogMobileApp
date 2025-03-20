@@ -1,11 +1,13 @@
 package com.example.blogmobileapp.repository;
 
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.blogmobileapp.common.TextFormatter;
 import com.example.blogmobileapp.model.PostModel;
 import com.example.blogmobileapp.service.FirebaseManager;
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +17,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PostRepository {
@@ -22,7 +25,7 @@ public class PostRepository {
     private final DatabaseReference postRef;
     private final List<PostModel> postModelList = new ArrayList<>();
 
-    private PostRepository() {
+    protected PostRepository() {
         postRef = FirebaseManager.getInstance().getFirebaseDatabase().getReference("Posts");
     }
 
@@ -38,15 +41,6 @@ public class PostRepository {
         MutableLiveData<List<PostModel>> postsLiveData = new MutableLiveData<>();
         Query query = postRef.orderByChild("author").equalTo(userId);
 
-        postRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DataSnapshot snapshot = task.getResult();
-                Log.d("FIREBASE", "Dữ liệu: " + snapshot.getValue());
-            } else {
-                Log.e("FIREBASE", "Lỗi lấy dữ liệu: " + task.getException());
-            }
-        });
-
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -57,8 +51,15 @@ public class PostRepository {
                         posts.add(post);
                     }
                 }
+                Collections.reverse(posts);
 
-                postsLiveData.postValue(posts);
+                for (PostModel post : posts) {
+                    UserRepository.getInstance().getUserById(post.getAuthor()).observeForever(user -> {
+                        post.setAuthor(user.getUsername());
+                        post.setAuthorAvtResId(user.getPhotoUrl());
+                        postsLiveData.postValue(posts);
+                    });
+                }
             }
 
             @Override

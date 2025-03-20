@@ -8,6 +8,10 @@ public class UserModel {
     private String photoUrl;
     private int avatarResId;
 
+    public UserModel() {
+
+    }
+
     public UserModel(String username, String fullname, int avatarResId) {
         this.username = username;
         this.fullname = fullname;

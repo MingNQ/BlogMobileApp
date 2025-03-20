@@ -38,7 +38,7 @@ public class TextFormatter {
         SpannableStringBuilder ssb = new SpannableStringBuilder(text);
 
         applySpan(ssb, "\\[b\\](.*?)\\[/b\\]", new StyleSpan(Typeface.BOLD));
-        applySpan(ssb, "\\[i\\](.*?)\\[/i\\]", new StyleSpan(Typeface.BOLD));
+        applySpan(ssb, "\\[i\\](.*?)\\[/i\\]", new StyleSpan(Typeface.ITALIC));
         applySpan(ssb, "\\[u\\](.*?)\\[/u\\]", new UnderlineSpan());
 
         return ssb;

@@ -1,5 +1,7 @@
 package com.example.blogmobileapp.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +13,30 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blogmobileapp.R;
+import com.example.blogmobileapp.common.AppConstant;
 import com.example.blogmobileapp.model.PostModel;
+import com.example.blogmobileapp.service.ImageManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FeaturedPostAdapter extends RecyclerView.Adapter<FeaturedPostAdapter.FeaturedPostViewHolder> {
     private List<PostModel> postList;
+    private Context context;
 
     public FeaturedPostAdapter(List<PostModel> postList) {
         this.postList = postList;
     }
 
+    public Context getContext() {
+        return this.context;
+    }
+
+    public void setContext(Context _context) {
+        this.context = _context;
+    }
     @NonNull
     @Override
     public FeaturedPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,9 +50,21 @@ public class FeaturedPostAdapter extends RecyclerView.Adapter<FeaturedPostAdapte
         holder.title.setText(post.getTitle());
         holder.authorName.setText(post.getAuthor());
         holder.timeReading.setText(post.getTimeReading());
-        holder.date.setText(String.valueOf(post.getTimestamp()));
-//        holder.thumbnail.setImageResource(new Uri(post.getThumbnailResId()));
-//        holder.authorAvatar.setImageResource(post.getAuthorAvtResId());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String date = sdf.format(new Date(post.getTimestamp()));
+        holder.date.setText(date);
+
+        if (post.getAuthorAvtResId() != null) {
+            ImageManager.loadImage((Activity) context, holder.authorAvatar, post.getAuthorAvtResId());
+        } else {
+            ImageManager.loadImage((Activity) context, holder.authorAvatar, AppConstant.DEFAULT_PHOTO_URL);
+        }
+
+        if (post.getThumbnailResId() != null) {
+            ImageManager.loadImage((Activity) context, holder.thumbnail, post.getThumbnailResId());
+        } else {
+            holder.thumbnail.setImageResource(R.drawable.red_heart);
+        }
     }
 
     @Override
