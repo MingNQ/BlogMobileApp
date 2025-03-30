@@ -7,6 +7,7 @@ on:
         type: string
         required: true
         default: 'Manual Debug Build'
+        description: 'Release Notes'
 
 jobs:
   build:
@@ -25,6 +26,9 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+
+      - name: Decode google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
 
       - name: Execute Gradle command - assembleDebug
         run: ./gradlew assembleDebug

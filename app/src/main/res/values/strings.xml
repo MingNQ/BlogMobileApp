@@ -52,6 +52,8 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
 
     <!-- Search Page -->
     <string name="S01">Tìm kiếm theo tiêu đề hoặc tác giả</string>
+    <string name="S02">Gần đây</string>
+    <string name="S03">Xóa hết</string>
 
     <!-- Individual Page -->
     <string name="I01">Chỉnh sửa trang cá nhân</string>
@@ -66,6 +68,9 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <!-- Notification Page -->
     <string name="N01">Thông báo</string>
     <string name="N02">Hiển thị thêm</string>
+    <string name="N03">Đã bày tỏ cảm xúc về bài viết của bạn</string>
+    <string name="N04">Đã bình luận về bài viết của bạn</string>
+    <string name="N05">Đã trả lời bình luận của bạn</string>
 
     <!-- Sign In/Up Page-->
     <string name="SI01">Nhập tên đăng nhập hoặc email</string>
@@ -96,9 +101,19 @@ Ngoài ra, Spiderum còn hỗ trợ các tác giả tạo series nội dung �
     <string name="R02_1">Xác nhận mật khẩu</string>
     <string name="R03">Đăng ký lại mật khẩu</string>
 
-
     <!-- Detail Page-->
     <string name="D01">Follow</string>
     <string name="D02">Gợi ý thêm</string>
     <string name="D03">Hãy chia sẻ cảm nghĩ của bạn về bài viết</string>
+
+    <!-- Category -->
+    <string name="C01">Khoa học - Công nghệ</string>
+    <string name="C02">Quan điểm - Tranh luận</string>
+    <string name="C03">Tài chính</string>
+    <string name="C04">Thể thao</string>
+    <string name="C00">Khác</string>
+
+    <!-- Menu -->
+    <string name="M01">Trang cá nhân</string>
+    <string name="M02">Đăng xuất</string>
 </resources>
