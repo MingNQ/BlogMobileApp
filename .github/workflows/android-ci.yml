@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 jobs:
   lint:
@@ -71,6 +71,7 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 33
+        target: google_apis
         script: ./gradlew connectedCheck
 
     - name: Upload test report
