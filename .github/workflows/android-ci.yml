@@ -53,3 +53,28 @@ jobs:
         name: unit_test_report
         path: app/build/reports/tests/testDebugUnitTest/
     
+  instrumentation-test:
+    needs: [unit-test]
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Decode google-services.json
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
+
+    - name: Run espresso tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 33
+        script: ./gradlew connectedCheck
+
+    - name: Upload test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: instrumentation_test_report
+        path: app/build/reports/androidTests/connected/
