@@ -68,6 +68,7 @@ jobs:
       run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
 
     - name: Run SonarQube Scan
-      run: ./gradlew app:sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      run: ./gradlew sonarqube
       env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
