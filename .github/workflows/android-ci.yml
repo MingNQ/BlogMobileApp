@@ -117,3 +117,33 @@ jobs:
       with:
           name: blog-mobile-app.apk
           path: app/build/outputs/apk/debug/app-debug.apk
+
+  deploy:
+    needs: [package]
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Decode google-services.json
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
+
+    - name: Download APK
+      uses: actions/download-artifact@v4
+      with:
+          name: blog-mobile-app.apk
+          path: app/build/outputs/apk/debug/
+
+    - name: Upload Artifact to Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1
+      with:
+        appId: ${{ secrets.FIREBASE_APP_ID }}
+        serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+        groups: testers
+        file: app/build/outputs/apk/debug/app-debug.apk
+        releaseNotes: ${{ inputs.release_notes }}
