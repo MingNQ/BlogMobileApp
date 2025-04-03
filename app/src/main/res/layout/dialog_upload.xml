@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/E10"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/category"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:prompt="@string/E10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/E11"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonUploadImage"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/E12"
+        android:textColor="@color/quite_white"
+        android:backgroundTint="@color/quite_black"
+        android:layout_marginTop="16dp"/>
+    
+    <ImageView
+        android:id="@+id/imageAfterUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/E13"
+                android:textColor="@color/quite_white"
+                android:backgroundTint="@color/light_gray"
+                android:layout_marginEnd="10dp"/>
+
+            <Button
+                android:id="@+id/buttonCreate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/E14"
+                android:textColor="@color/quite_white"
+                android:backgroundTint="@color/medium_blue"
+                android:layout_marginStart="10dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -2,9 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 jobs:
   lint:
@@ -53,3 +51,40 @@ jobs:
         name: unit_test_report
         path: app/build/reports/tests/testDebugUnitTest/
     
+  static-code-analysis:
+    needs: [unit-test]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+          java-version: 17
+          distribution: 'zulu'
+
+    - name: Decode google-services.json
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
+
+    - name: Cache SonarQube packages
+      uses: actions/cache@v4
+      with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+    - name: Build and analyze
+      env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew build sonar --info
