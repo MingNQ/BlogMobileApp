@@ -20,7 +20,6 @@ import com.example.blogmobileapp.R;
 
 public class ImageManager {
     public static void loadImage(Activity activity, ImageView imageView, String imageUrl) {
-        Log.d("Glide", "Load image: " + imageUrl + " From: " + activity.toString());
 
         GlideUrl glideUrl = new GlideUrl(imageUrl, new LazyHeaders.Builder()
                 .addHeader("Authorization", "Bearer YOUR_ACCESS_TOKEN")
@@ -31,13 +30,12 @@ public class ImageManager {
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, @Nullable Object model, @NonNull Target<Drawable> target, boolean isFirstResource) {
-                        Log.e("Glide", "Load failed: " + e.getMessage());
+
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(@NonNull Drawable resource, @NonNull Object model, Target<Drawable> target, @NonNull DataSource dataSource, boolean isFirstResource) {
-                        Log.d("Glide", "Image loaded successfully");
                         return false;
                     }
                 })

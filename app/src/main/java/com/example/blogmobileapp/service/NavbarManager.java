@@ -18,47 +18,33 @@ import com.example.blogmobileapp.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class NavbarManager {
-    private static ImageView home, search, upload, notification, userAvatar;
-    private static View navbarView;
+    private static ImageView search;
+    private static ImageView upload;
+//    private static ImageView notification;
+    private static ImageView userAvatar;
     public static UserModel _User;
 
     public static void setupNavbar(Activity activity, View navbar) {
-        home = navbar.findViewById(R.id.homeIcon);
+        ImageView home = navbar.findViewById(R.id.homeIcon);
         upload = navbar.findViewById(R.id.uploadIcon);
         search = navbar.findViewById(R.id.searchIcon);
-        notification = navbar.findViewById(R.id.notificationIcon);
+//        notification = navbar.findViewById(R.id.notificationIcon);
         userAvatar = navbar.findViewById(R.id.userAvatar);
-        navbarView = navbar;
 
         loadUserAvatar(activity);
 
-        if (home != null) {
-            home.setOnClickListener(view -> {
-                if (activity instanceof HomeActivity) {
-                    ScrollView scrollView = activity.findViewById(R.id.homeScrollView);
-                    scrollView.smoothScrollTo(0, 0);
-                    return;
-                }
-                Intent intent = new Intent(activity, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        homeHandle(activity, home);
 
-                activity.startActivity(intent);
-                activity.finish();
-            });
-        }
+        uploadHandle(activity);
 
-        if (upload != null) {
-            upload.setOnClickListener(view -> {
-                if (activity instanceof UploadActivity) {
-                    return;
-                }
+        searchHandle(activity);
 
-                Intent intent = new Intent(activity, UploadActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                activity.startActivity(intent);
-            });
-        }
+        userAvatarHandle(activity);
 
+        // TO-DO: Notification
+    }
+
+    private static void searchHandle(Activity activity) {
         if (search != null) {
             search.setOnClickListener(view -> {
                 Intent intent = new Intent(activity, SearchActivity.class);
@@ -66,7 +52,9 @@ public class NavbarManager {
                 activity.startActivity(intent);
             });
         }
+    }
 
+    private static void userAvatarHandle(Activity activity) {
         if (userAvatar != null) {
             userAvatar.setOnClickListener(view -> {
                 PopupMenu popupMenu = new PopupMenu(activity, view);
@@ -105,8 +93,37 @@ public class NavbarManager {
                 popupMenu.show();
             });
         }
+    }
 
-        // TO-DO: Notification
+    private static void uploadHandle(Activity activity) {
+        if (upload != null) {
+            upload.setOnClickListener(view -> {
+                if (activity instanceof UploadActivity) {
+                    return;
+                }
+
+                Intent intent = new Intent(activity, UploadActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                activity.startActivity(intent);
+            });
+        }
+    }
+
+    private static void homeHandle(Activity activity, ImageView home) {
+        if (home != null) {
+            home.setOnClickListener(view -> {
+                if (activity instanceof HomeActivity) {
+                    ScrollView scrollView = activity.findViewById(R.id.homeScrollView);
+                    scrollView.smoothScrollTo(0, 0);
+                    return;
+                }
+                Intent intent = new Intent(activity, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                activity.startActivity(intent);
+                activity.finish();
+            });
+        }
     }
 
     public static void loadUserAvatar(Activity activity) {

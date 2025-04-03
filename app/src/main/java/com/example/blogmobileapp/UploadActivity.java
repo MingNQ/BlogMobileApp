@@ -30,14 +30,16 @@ import com.example.blogmobileapp.service.NavbarManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class UploadActivity extends AppCompatActivity {
-    private ImageView boldStyle, underlineStyle, italicStyle;
-    private EditText postTitle, postContent;
-    private Button btnDraftSave, btnContinueUpload;
+    private ImageView boldStyle;
+    private ImageView underlineStyle;
+    private ImageView italicStyle;
+    private EditText postTitle;
+    private EditText postContent;
+    private Button btnDraftSave;
+    private Button btnContinueUpload;
     private Spinner spinner;
     private Dialog dialog;
 
@@ -58,20 +60,6 @@ public class UploadActivity extends AppCompatActivity {
 
         // Handle action of buttons
         handleButtonAction();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == AppConstant.PICK_IMAGE_CODE && resultCode == RESULT_OK && data != null) {
-            Uri selectImageUri = data.getData();
-
-            try {
-            } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     // Initialize widgets
@@ -108,7 +96,6 @@ public class UploadActivity extends AppCompatActivity {
         btnCreate = dialog.findViewById(R.id.buttonCreate);
         ImageView imageAfterUpload = dialog.findViewById(R.id.imageAfterUpload);
 
-        Category[] categories = Category.values();
         String[] categoryDisplayName = {
 //                getString(R.string.E10),
                 getString(R.string.C00),
@@ -192,7 +179,7 @@ public class UploadActivity extends AppCompatActivity {
     // Handle: Open gallery and upload image
     private void uploadFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, AppConstant.PICK_IMAGE_CODE);
+//        startActivityForResult(intent, AppConstant.PICK_IMAGE_CODE);
     }
 
     // Handle to apply text style

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,30 +32,17 @@ public class MainActivity extends AppCompatActivity {
         initWidgets();
 
         // Go to Sign up Activity
-        signAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SignUpActivity.class));
-            }
-        });
+        signAccount.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SignUpActivity.class)));
 
         // Go to Forget password Activity
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ForgetPasswordActivity.class));
-            }
-        });
+        forgotPassword.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ForgetPasswordActivity.class)));
 
         // Sign In
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = loginEmail.getText().toString();
-                String password = loginPassword.getText().toString();
+        loginBtn.setOnClickListener(view -> {
+            String email = loginEmail.getText().toString();
+            String password = loginPassword.getText().toString();
 
-                signIn(email, password);
-            }
+            signIn(email, password);
         });
     }
 
@@ -122,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                throw new UnsupportedOperationException("Error");
             }
         });
     }

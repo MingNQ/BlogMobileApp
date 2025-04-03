@@ -53,9 +53,8 @@ public class SearchActivity extends AppCompatActivity {
     private void initRecycler() {
         // TO-DO: Get Data
         users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
-        users.add(new UserModel("MingNQ", "Nguyen Quoc Minh", R.drawable.red_heart));
+        users.add(new UserModel("MinGo", "Nguyen Minh", R.drawable.red_heart));
+        users.add(new UserModel("Doflamingo", "Quoc Minh", R.drawable.red_heart));
 
         adapter = new SearchUserAdapter(users);
         recyclerSearchUser.setLayoutManager(new LinearLayoutManager(this));
