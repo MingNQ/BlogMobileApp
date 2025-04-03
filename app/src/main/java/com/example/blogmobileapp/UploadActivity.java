@@ -1,13 +1,11 @@
 package com.example.blogmobileapp;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.SpannableStringBuilder;
@@ -21,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.blogmobileapp.common.AppConstant;
-import com.example.blogmobileapp.common.Category;
 import com.example.blogmobileapp.common.TextFormatter;
 import com.example.blogmobileapp.common.TextStyle;
 import com.example.blogmobileapp.service.FirebaseManager;
@@ -90,11 +86,12 @@ public class UploadActivity extends AppCompatActivity {
 
     // Show dialog upload complete
     private void showUploadDialog() {
-        Button btnUploadImage, btnBack, btnCreate;
+        Button btnUploadImage;
+        Button btnBack;
+        Button btnCreate;
         btnUploadImage = dialog.findViewById(R.id.buttonUploadImage);
         btnBack = dialog.findViewById(R.id.buttonBack);
         btnCreate = dialog.findViewById(R.id.buttonCreate);
-        ImageView imageAfterUpload = dialog.findViewById(R.id.imageAfterUpload);
 
         String[] categoryDisplayName = {
 //                getString(R.string.E10),

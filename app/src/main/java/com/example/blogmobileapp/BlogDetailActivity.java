@@ -1,31 +1,26 @@
 package com.example.blogmobileapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.blogmobileapp.common.TextFormatter;
-import com.example.blogmobileapp.model.CommentModel;
-import com.example.blogmobileapp.model.PostModel;
 import com.example.blogmobileapp.service.NavbarManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BlogDetailActivity extends AppCompatActivity {
     private TextView postCreateDate, postTitle, authorName, postContent;
-    private EditText commentContent;
-    private Button btnFollow;
-    private ImageView imgSend, authorAvatar;
-    private RecyclerView recyclerViewMorePost, recyclerViewComment;
-    private List<PostModel> morePostList;
-    private List<CommentModel> commentModelList;
+//    private EditText commentContent;
+//    private Button btnFollow;
+//    private ImageView imgSend;
+    private ImageView authorAvatar;
+//    private RecyclerView recyclerViewMorePost, recyclerViewComment;
+//    private List<PostModel> morePostList;
+//    private List<CommentModel> commentModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +60,8 @@ public class BlogDetailActivity extends AppCompatActivity {
         postTitle = findViewById(R.id.postTitle);
         postContent = findViewById(R.id.postContent);
         authorName = findViewById(R.id.authorName);
-        commentContent = findViewById(R.id.editTextComment);
-        btnFollow =  findViewById(R.id.buttonFollow);
-        imgSend = findViewById(R.id.imageViewSend);
+//        commentContent = findViewById(R.id.editTextComment);
+//        btnFollow =  findViewById(R.id.buttonFollow);
         authorAvatar = findViewById(R.id.authorAvatar);
-
-        recyclerViewMorePost = findViewById(R.id.recyclerMorePost);
-        recyclerViewComment = findViewById(R.id.recyclerComment);
-
-        morePostList = new ArrayList<>();
-        commentModelList = new ArrayList<>();
     }
 }
