@@ -3,8 +3,6 @@ name: Android CI
 on:
   push:
     branches: [ "develop" ]
-  pull:
-    branches: [ "master" ]
 
 jobs:
   lint:
