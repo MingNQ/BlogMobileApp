@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
             String email = loginEmail.getText().toString();
             String password = loginPassword.getText().toString();
 
-            signIn(email, password);
+            Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show();
+//            signIn(email, password);
         });
     }
 

@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void signUpAccount(String email, String password, String name, String photoUrl) {
-        progressDialog.setTitle("Please wait..."); // TO-DO: Change Text
+        progressDialog.setTitle("Please wait...");
         progressDialog.show();
 
         FirebaseManager.getInstance().getFirebaseAuth().createUserWithEmailAndPassword(email, password)
