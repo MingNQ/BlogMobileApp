@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Sign In
         loginBtn.setOnClickListener(view -> {
-            String email = loginEmail.getText().toString();
-            String password = loginPassword.getText().toString();
-
-            signIn(email, password);
+            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+//            String email = loginEmail.getText().toString();
+//            String password = loginPassword.getText().toString();
+//
+//            signIn(email, password);
         });
     }
 
@@ -59,28 +60,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Handle Sign In
-    private void signIn(String email, String password) {
-        // Debug error
-        FirebaseManager.getInstance().getFirebaseAuth().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                   if (task.isSuccessful()) {
-                       FirebaseUser user = FirebaseManager.getInstance().getFirebaseUser();
-                       if (user != null && user.isEmailVerified()) {
-                           userReload(user); // Reload user information
-                       } else {
-                           Toast.makeText(this,
-                                   "Vui lòng xác nhận email trước khi đăng nhập!",
-                                   Toast.LENGTH_LONG).show();
-                           FirebaseManager.getInstance().getFirebaseAuth().signOut();
-                       }
-                   } else {
-                       Toast.makeText(MainActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
-                   }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // TO-DO: Change Text
-                });
-    }
+//    private void signIn(String email, String password) {
+//        // Debug error
+//        FirebaseManager.getInstance().getFirebaseAuth().signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                   if (task.isSuccessful()) {
+//                       FirebaseUser user = FirebaseManager.getInstance().getFirebaseUser();
+//                       if (user != null && user.isEmailVerified()) {
+//                           userReload(user); // Reload user information
+//                       } else {
+//                           Toast.makeText(this,
+//                                   "Vui lòng xác nhận email trước khi đăng nhập!",
+//                                   Toast.LENGTH_LONG).show();
+//                           FirebaseManager.getInstance().getFirebaseAuth().signOut();
+//                       }
+//                   } else {
+//                       Toast.makeText(MainActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+//                   }
+//                })
+//                .addOnFailureListener(e -> {
+//                    Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // TO-DO: Change Text
+//                });
+//    }
 
     // Reload user from database
     private void userReload(FirebaseUser user) {
